@@ -5,6 +5,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Author {
 	private String name;
 	private String surname;
 
-	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Book> books;
 
 	private static final Logger log = LoggerFactory.getLogger(Author.class);

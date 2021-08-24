@@ -1,6 +1,5 @@
 package pl.michalzadrozny.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -8,31 +7,38 @@ import javax.faces.bean.SessionScoped;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import pl.michalzadrozny.entity.Book;
+import pl.michalzadrozny.exception.NotFoundException;
+import pl.michalzadrozny.repository.BookRepo;
 
 @ManagedBean
 @SessionScoped
-public class BookService {
+public class BookService extends SpringBeanAutowiringSupport {
 
 	private static final Logger log = LoggerFactory.getLogger(BookService.class);
-	public List<Book> books = new ArrayList<>();
+
+	@Autowired
+	private BookRepo bookRepo;
 
 	public List<Book> getBooks() {
 		log.info("Request to getBooks");
 
-		return books;
+		return bookRepo.findAll();
 	}
 
 	public void addBook(Book book) {
 		log.info("Request to addBook : {}", book);
 
-		books.add(book);
+		bookRepo.save(book);
 	}
 
-	public Book getSingleBook(int id) {
+	public Book getSingleBook(Long id) {
 		log.info("Request to getSingleBook : {}", id);
 
-		return books.get(id);
+		return bookRepo.findById(id)
+				.orElseThrow(() -> new NotFoundException("Book with id " + id + " could not be found"));
 	}
 }
