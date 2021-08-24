@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Add book</title>
+</h:head>
+<h:body>
+	<h3>Add book</h3>
+
+	<h:form>
+
+		<h:outputLabel>Title: </h:outputLabel>
+		<h:inputText value="#{book.title}" />
+		<h:outputLabel>Author: </h:outputLabel>
+
+
+		<h:selectOneMenu value="#{book.author}" converter="#{authorConverter}">
+			<f:selectItems value="#{authorService.authors}" var="author"
+				itemLabel="#{author.name}" itemValue="#{book.author}" />
+		</h:selectOneMenu>
+
+		<h:commandButton action="#{bookService.addBook(book)}" value="Save" />
+
+	</h:form>
+</h:body>
+</html>

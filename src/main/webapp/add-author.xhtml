@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title>Add author</title>
+</h:head>
+<h:body>
+	<h3>Add author</h3>
+
+	<h:form>
+
+		<h:outputLabel>Name: </h:outputLabel>
+		<h:inputText value="#{author.name}" />
+		<h:outputLabel>Surname: </h:outputLabel>
+		<h:inputText value="#{author.surname}" />
+
+		<h:commandButton action="#{authorService.addAuthor(author)}"
+			value="Save" />
+
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<title>Author</title>
+</h:head>
+<h:body>
+	<h3>Author</h3>
+
+	<h:form>
+
+		<h:outputLabel>Id: </h:outputLabel>
+		#{author.id} <br />
+		<h:outputLabel>Name: </h:outputLabel>
+		#{author.name} <br />
+		<h:outputLabel>Surname: </h:outputLabel>
+		#{author.surname} <br />
+
+		<h:outputLabel>Books: </h:outputLabel>
+		<ul>
+			<ui:repeat var="tempBook" value="#{author.books}">
+				<li><h:outputText value="#{tempBook.title}" /></li>
+			</ui:repeat>
+		</ul>
+
+
+	</h:form>
+</h:body>
+</html>
