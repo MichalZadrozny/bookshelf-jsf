@@ -18,7 +18,7 @@
 		<ui:repeat var="tempBook" value="#{bookService.books}">
 			<h:form>
 				<li><h:commandLink value="#{tempBook.title}"
-					action="#{bookController.updateBook(tempBook)}" /></li>
+					action="#{bookController.showBook(tempBook)}" /></li>
 			</h:form>
 		</ui:repeat>
 	</ul>
@@ -31,7 +31,7 @@
 		<ui:repeat var="tempAuthor" value="#{authorService.authors}">
 			<h:form>
 				<li><h:commandLink value="#{tempAuthor.name} #{tempAuthor.surname}"
-					action="#{authorController.updateAuthor(tempAuthor)}" /></li>
+					action="#{authorController.showAuthor(tempAuthor)}" /></li>
 			</h:form>
 		</ui:repeat>
 	</ul>

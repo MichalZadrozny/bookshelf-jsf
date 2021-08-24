@@ -18,16 +18,13 @@ public class BookController {
 
 	private static final Logger log = LoggerFactory.getLogger(BookController.class);
 
-	public String updateBook(Book book) {
+	public String showBook(Book book) {
 
 		log.info("updateBook: {}", book);
 
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-
 		Map<String, Object> requestMap = externalContext.getRequestMap();
 		requestMap.put("book", book);
-
-		log.info("Book from request map: {}", requestMap.get("book"));
 
 		return "book";
 	}
