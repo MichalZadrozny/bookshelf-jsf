@@ -20,7 +20,7 @@ public class BookController {
 
 	public String showBook(Book book) {
 
-		log.info("updateBook: {}", book);
+		log.info("showBook: {}", book);
 
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> requestMap = externalContext.getRequestMap();

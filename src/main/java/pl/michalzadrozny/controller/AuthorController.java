@@ -21,7 +21,7 @@ public class AuthorController extends SpringBeanAutowiringSupport {
 
 	public String showAuthor(Author author) {
 
-		log.info("updateAuthor: {}", author);
+		log.info("showAuthor: {}", author);
 
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> requestMap = externalContext.getRequestMap();
