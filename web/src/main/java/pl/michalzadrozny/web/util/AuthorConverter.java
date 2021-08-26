@@ -1,4 +1,4 @@
-package pl.michalzadrozny.util;
+package pl.michalzadrozny.web.util;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
