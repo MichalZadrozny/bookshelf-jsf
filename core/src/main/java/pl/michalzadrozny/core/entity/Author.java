@@ -1,4 +1,4 @@
-package pl.michalzadrozny.entity;
+package pl.michalzadrozny.core.entity;
 
 import java.util.List;
 

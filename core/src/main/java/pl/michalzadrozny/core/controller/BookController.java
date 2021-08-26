@@ -1,4 +1,4 @@
-package pl.michalzadrozny.controller;
+package pl.michalzadrozny.core.controller;
 
 import java.util.Map;
 
@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import pl.michalzadrozny.entity.Book;
+import pl.michalzadrozny.core.entity.Book;
 
 @ManagedBean
 @SessionScoped

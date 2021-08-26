@@ -1,4 +1,4 @@
-package pl.michalzadrozny.exception;
+package pl.michalzadrozny.core.exception;
 
 public class NotFoundException extends RuntimeException {
 

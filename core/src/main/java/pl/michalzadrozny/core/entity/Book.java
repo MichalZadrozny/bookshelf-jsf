@@ -1,4 +1,4 @@
-package pl.michalzadrozny.entity;
+package pl.michalzadrozny.core.entity;
 
 import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;

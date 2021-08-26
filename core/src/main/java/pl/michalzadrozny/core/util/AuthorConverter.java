@@ -1,4 +1,4 @@
-package pl.michalzadrozny.util;
+package pl.michalzadrozny.core.util;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -10,7 +10,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
 import pl.michalzadrozny.core.entity.Author;
-import pl.michalzadrozny.core.service.AuthorService;;
+import pl.michalzadrozny.core.service.AuthorService;
 
 @ManagedBean
 @RequestScoped

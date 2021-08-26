@@ -1,4 +1,4 @@
-package pl.michalzadrozny.controller;
+package pl.michalzadrozny.core.controller;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import pl.michalzadrozny.entity.Author;
+import pl.michalzadrozny.core.entity.Author;
 
 @ManagedBean
 @SessionScoped

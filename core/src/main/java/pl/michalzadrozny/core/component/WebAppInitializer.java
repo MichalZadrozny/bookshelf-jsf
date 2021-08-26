@@ -1,4 +1,4 @@
-package pl.michalzadrozny.component;
+package pl.michalzadrozny.core.component;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,7 +11,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 
 import com.sun.faces.config.FacesInitializer;
 
-import pl.michalzadrozny.config.WebConfig;
+import pl.michalzadrozny.core.config.WebConfig;
 
 public class WebAppInitializer extends FacesInitializer implements WebApplicationInitializer {
 

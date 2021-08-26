@@ -1,4 +1,4 @@
-package pl.michalzadrozny.service;
+package pl.michalzadrozny.core.service;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import pl.michalzadrozny.entity.Author;
-import pl.michalzadrozny.exception.NotFoundException;
-import pl.michalzadrozny.repository.AuthorRepo;
+import pl.michalzadrozny.core.entity.Author;
+import pl.michalzadrozny.core.exception.NotFoundException;
+import pl.michalzadrozny.core.repository.AuthorRepo;
 
 @ManagedBean
 @SessionScoped

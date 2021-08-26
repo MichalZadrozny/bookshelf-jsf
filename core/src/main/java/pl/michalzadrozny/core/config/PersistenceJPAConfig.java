@@ -1,4 +1,4 @@
-package pl.michalzadrozny.config;
+package pl.michalzadrozny.core.config;
 
 import java.util.Properties;
 
