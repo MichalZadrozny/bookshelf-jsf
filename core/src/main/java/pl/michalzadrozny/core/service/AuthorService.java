@@ -1,9 +1,11 @@
 package pl.michalzadrozny.core.service;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +16,11 @@ import pl.michalzadrozny.core.entity.Author;
 import pl.michalzadrozny.core.exception.NotFoundException;
 import pl.michalzadrozny.core.repository.AuthorRepo;
 
-@ManagedBean
+@Named
 @SessionScoped
-public class AuthorService extends SpringBeanAutowiringSupport {
+public class AuthorService extends SpringBeanAutowiringSupport implements Serializable {
 
+	private static final long serialVersionUID = -5829561476832144071L;
 	private static final Logger log = LoggerFactory.getLogger(AuthorService.class);
 
 	@Autowired
@@ -25,6 +28,8 @@ public class AuthorService extends SpringBeanAutowiringSupport {
 
 	public List<Author> getAuthors() {
 		log.info("Request to getAuthors");
+
+		log.info("List of authors: {}", Arrays.toString(authorRepo.findAll().toArray()));
 
 		return authorRepo.findAll();
 	}

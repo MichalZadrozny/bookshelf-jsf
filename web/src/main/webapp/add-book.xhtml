@@ -12,14 +12,14 @@
 
 	<h:form>
 
-		<h:outputLabel>Title: </h:outputLabel>
+		<h:outputLabel>Title: </h:outputLabel> 
 		<h:inputText value="#{book.title}" />
 		<h:outputLabel>Author: </h:outputLabel>
 
 
 		<h:selectOneMenu value="#{book.author}" converter="#{authorConverter}">
-			<f:selectItems value="#{authorService.authors}" var="author"
-				itemLabel="#{author.name}" itemValue="#{book.author}" />
+			<f:selectItems value="#{authorService.authors}" var="listedAuthor"
+				itemLabel="#{listedAuthor.name}" itemValue="#{book.author}" />
 		</h:selectOneMenu>
 
 		<h:commandButton action="#{bookService.addBook(book)}" value="Save" />

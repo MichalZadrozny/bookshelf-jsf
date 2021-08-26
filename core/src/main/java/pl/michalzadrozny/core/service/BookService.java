@@ -1,9 +1,10 @@
 package pl.michalzadrozny.core.service;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +15,11 @@ import pl.michalzadrozny.core.entity.Book;
 import pl.michalzadrozny.core.exception.NotFoundException;
 import pl.michalzadrozny.core.repository.BookRepo;
 
-@ManagedBean
+@Named
 @SessionScoped
-public class BookService extends SpringBeanAutowiringSupport {
+public class BookService extends SpringBeanAutowiringSupport implements Serializable {
 
+	private static final long serialVersionUID = -1443938721621119046L;
 	private static final Logger log = LoggerFactory.getLogger(BookService.class);
 
 	@Autowired

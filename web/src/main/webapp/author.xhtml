@@ -14,15 +14,15 @@
 	<h:form>
 
 		<h:outputLabel>Id: </h:outputLabel>
-		#{author.id} <br />
+		#{showAuthor.id} <br />
 		<h:outputLabel>Name: </h:outputLabel>
-		#{author.name} <br />
+		#{showAuthor.name} <br />
 		<h:outputLabel>Surname: </h:outputLabel>
-		#{author.surname} <br />
+		#{showAuthor.surname} <br />
 
 		<h:outputLabel>Books: </h:outputLabel>
 		<ul>
-			<ui:repeat var="tempBook" value="#{author.books}">
+			<ui:repeat var="tempBook" value="#{showAuthor.books}">
 				<li><h:outputText value="#{tempBook.title}" /></li>
 			</ui:repeat>
 		</ul>
