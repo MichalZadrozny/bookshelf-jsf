@@ -2,38 +2,80 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
 	<title>Bookshelf</title>
+	<h:outputStylesheet name="index-styles.css" library="css" />
 </h:head>
 <h:body>
+
 	<h3>Bookshelf</h3>
 	<br />
+	<div class="wrapper">
+		<div>
+			<h4>Books</h4>
+			<h:button outcome="add-book" value="Add book" />
 
-	<h4>Books</h4>
-	<h:button outcome="add-book?faces-redirect=true" value="Add book" />
+			<h:dataTable var="tempBook" value="#{bookService.books}"
+				styleClass="table" headerClass="tableHeader"
+				rowClasses="tableOddRow,tableEvenRow">
+				<h:column>
+					<f:facet name="header">Book</f:facet>
 
-	<ul>
-		<ui:repeat var="tempBook" value="#{bookService.books}">
-			<h:form>
-				<li><h:commandLink value="#{tempBook.title}"
-					action="#{bookController.showBook(tempBook)}" /></li>
-			</h:form>
-		</ui:repeat>
-	</ul>
+					<h:form>
+						<h:commandLink value="#{tempBook.title}"
+							action="#{bookController.showBook(tempBook)}" />
+					</h:form>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Edit</f:facet>
+					<h:form>
+						<h:commandLink action="#{bookController.showBook(tempBook)}">Edit</h:commandLink>
+					</h:form>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Delete</f:facet>
+					<h:form>
+						<h:commandLink action="#{bookController.deleteBook(tempBook)}">Delete</h:commandLink>
+					</h:form>
+				</h:column>
+			</h:dataTable>
+		</div>
 
+		<div>
+			<h4>Authors</h4>
+			<h:button outcome="add-author" value="Add author" />
 
-	<h4>Authors</h4>
-	<h:button outcome="add-author?faces-redirect=true" value="Add author" />
+			<h:dataTable var="tempAuthor" value="#{authorService.authors}"
+				styleClass="table" headerClass="tableHeader"
+				rowClasses="tableOddRow,tableEvenRow">
+				<h:column>
+					<f:facet name="header">Author</f:facet>
+					<h:form>
+						<h:commandLink value="#{tempAuthor.name} #{tempAuthor.surname}"
+							action="#{authorController.showAuthor(tempAuthor)}" />
+					</h:form>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Edit</f:facet>
+					<h:form>
+						<h:commandLink
+							action="#{authorController.showUpdateAuthor(tempAuthor)}">Edit</h:commandLink>
+					</h:form>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Delete</f:facet>
+					<h:form>
+						<h:commandLink
+							action="#{authorController.deleteAuthor(tempAuthor)}">Delete</h:commandLink>
+					</h:form>
+				</h:column>
+			</h:dataTable>
 
-	<ul>
-		<ui:repeat var="tempAuthor" value="#{authorService.authors}">
-			<h:form>
-				<li><h:commandLink value="#{tempAuthor.name} #{tempAuthor.surname}"
-					action="#{authorController.showAuthor(tempAuthor)}" /></li>
-			</h:form>
-		</ui:repeat>
-	</ul>
+		</div>
+	</div>
+
 </h:body>
 </html>

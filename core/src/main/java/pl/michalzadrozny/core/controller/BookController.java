@@ -10,15 +10,21 @@ import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import pl.michalzadrozny.core.entity.Book;
+import pl.michalzadrozny.core.service.BookService;
 
 @Named
 @SessionScoped
-public class BookController implements Serializable {
+public class BookController extends SpringBeanAutowiringSupport implements Serializable {
 
 	private static final long serialVersionUID = -2108176301178285795L;
 	private static final Logger log = LoggerFactory.getLogger(BookController.class);
+
+	@Autowired
+	private BookService bookService;
 
 	public String showBook(Book book) {
 
@@ -29,5 +35,13 @@ public class BookController implements Serializable {
 		requestMap.put("showBook", book);
 
 		return "book";
+	}
+
+	public String deleteBook(Book book) {
+		log.info("deleteBook: {}", book);
+
+		bookService.deleteBook(book);
+
+		return "index";
 	}
 }
