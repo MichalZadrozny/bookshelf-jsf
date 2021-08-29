@@ -3,7 +3,7 @@ package pl.michalzadrozny.core.entity;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Entity
-@Named
+@ManagedBean
 @RequestScoped
 public class Author {
 

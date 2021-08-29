@@ -54,4 +54,18 @@ public class BookService extends SpringBeanAutowiringSupport implements Serializ
 
 		bookRepo.delete(book);
 	}
+
+	@Transactional
+	public Book updateBook(Book newBook) {
+		log.info("Request to updateBook : {}", newBook);
+
+		Book bookToUpdate = bookRepo.findById(newBook.getId())
+				.orElseThrow(() -> new NotFoundException("Book with id " + newBook.getId() + " could not be found"));
+
+		bookToUpdate.setTitle(newBook.getTitle());
+		bookToUpdate.setAuthor(newBook.getAuthor());
+		bookRepo.save(bookToUpdate);
+
+		return newBook;
+	}
 }

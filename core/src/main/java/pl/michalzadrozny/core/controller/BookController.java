@@ -44,4 +44,25 @@ public class BookController extends SpringBeanAutowiringSupport implements Seria
 
 		return "index";
 	}
+
+	public String updateBook(Book book) {
+
+		log.info("updateBook: {}", book);
+
+		bookService.updateBook(book);
+
+		return "index";
+	}
+
+	public String showUpdateBook(Book book) {
+
+		log.info("showUpdateBook: {}", book);
+
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		Map<String, Object> requestMap = externalContext.getRequestMap();
+		book.setAuthor(null);
+		requestMap.put("book", book);
+
+		return "edit-book";
+	}
 }
