@@ -3,7 +3,7 @@ package pl.michalzadrozny.core.service;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ import pl.michalzadrozny.core.exception.NotFoundException;
 import pl.michalzadrozny.core.repository.BookRepo;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class BookService extends SpringBeanAutowiringSupport implements Serializable {
 
 	private static final long serialVersionUID = -1443938721621119046L;

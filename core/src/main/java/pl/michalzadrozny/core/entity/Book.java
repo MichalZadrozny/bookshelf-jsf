@@ -1,6 +1,7 @@
 package pl.michalzadrozny.core.entity;
 
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,7 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-@ManagedBean
+@Named
+@RequestScoped
 public class Book {
 
 	@Id

@@ -3,7 +3,7 @@ package pl.michalzadrozny.core.controller;
 import java.io.Serializable;
 import java.util.Map;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -17,7 +17,7 @@ import pl.michalzadrozny.core.entity.Author;
 import pl.michalzadrozny.core.service.AuthorService;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class AuthorController extends SpringBeanAutowiringSupport implements Serializable {
 
 	private static final long serialVersionUID = 994585156676448103L;

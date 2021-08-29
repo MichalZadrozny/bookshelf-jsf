@@ -3,7 +3,7 @@ package pl.michalzadrozny.core.service;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ import pl.michalzadrozny.core.exception.NotFoundException;
 import pl.michalzadrozny.core.repository.AuthorRepo;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class AuthorService extends SpringBeanAutowiringSupport implements Serializable {
 
 	private static final long serialVersionUID = -5829561476832144071L;
