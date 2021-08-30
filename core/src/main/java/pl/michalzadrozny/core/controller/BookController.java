@@ -1,5 +1,6 @@
 package pl.michalzadrozny.core.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -26,15 +27,27 @@ public class BookController extends SpringBeanAutowiringSupport implements Seria
 	@Autowired
 	private BookService bookService;
 
-	public String showBook(Book book) {
+	public void showBook(Book book) {
 
 		log.info("showBook: {}", book);
 
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		Map<String, Object> requestMap = externalContext.getRequestMap();
-		requestMap.put("showBook", book);
+		String url = "book.xhtml?id=" + book.getId();
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+		} catch (IOException e) {
+			log.info(e.getMessage());
+		}
 
-		return "book";
+	}
+
+	public void getBook(Long id) {
+
+		log.info("getBook: {}", id);
+
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+
+		Map<String, Object> requestMap = externalContext.getRequestMap();
+		requestMap.put("book", bookService.getSingleBook(id));
 	}
 
 	public String addBook(Book book) {
@@ -43,15 +56,16 @@ public class BookController extends SpringBeanAutowiringSupport implements Seria
 
 		bookService.addBook(book);
 
-		return "index";
+		return "index?faces-redirect=true";
 	}
 
 	public String deleteBook(Book book) {
+
 		log.info("deleteBook: {}", book);
 
 		bookService.deleteBook(book);
 
-		return "index";
+		return "index?faces-redirect=true";
 	}
 
 	public String updateBook(Book book) {
@@ -60,18 +74,18 @@ public class BookController extends SpringBeanAutowiringSupport implements Seria
 
 		bookService.updateBook(book);
 
-		return "index";
+		return "index?faces-redirect=true";
 	}
 
-	public String showUpdateBook(Book book) {
+	public void showUpdateBook(Book book) {
 
 		log.info("showUpdateBook: {}", book);
 
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		Map<String, Object> requestMap = externalContext.getRequestMap();
-		book.setAuthor(null);
-		requestMap.put("book", book);
-
-		return "edit-book";
+		String url = "edit-book.xhtml?id=" + book.getId();
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+		} catch (IOException e) {
+			log.info(e.getMessage());
+		}
 	}
 }

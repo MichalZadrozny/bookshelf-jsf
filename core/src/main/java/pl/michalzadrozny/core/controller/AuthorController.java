@@ -1,5 +1,6 @@
 package pl.michalzadrozny.core.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -26,15 +27,26 @@ public class AuthorController extends SpringBeanAutowiringSupport implements Ser
 	@Autowired
 	private AuthorService authorService;
 
-	public String showAuthor(Author author) {
+	public void showAuthor(Author author) {
 
 		log.info("showAuthor: {}", author);
 
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		Map<String, Object> requestMap = externalContext.getRequestMap();
-		requestMap.put("showAuthor", author);
+		String url = "author.xhtml?id=" + author.getId();
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+		} catch (IOException e) {
+			log.info(e.getMessage());
+		}
+	}
 
-		return "author";
+	public void getAuthor(Long id) {
+
+		log.info("getAuthor: {}", id);
+
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+
+		Map<String, Object> requestMap = externalContext.getRequestMap();
+		requestMap.put("author", authorService.getSingleAuthor(id));
 	}
 
 	public String addAuthor(Author author) {
@@ -43,7 +55,7 @@ public class AuthorController extends SpringBeanAutowiringSupport implements Ser
 
 		authorService.addAuthor(author);
 
-		return "index";
+		return "index?faces-redirect=true";
 	}
 
 	public String deleteAuthor(Author author) {
@@ -52,7 +64,7 @@ public class AuthorController extends SpringBeanAutowiringSupport implements Ser
 
 		authorService.deleteAuthor(author);
 
-		return "index";
+		return "index?faces-redirect=true";
 	}
 
 	public String updateAuthor(Author author) {
@@ -61,17 +73,18 @@ public class AuthorController extends SpringBeanAutowiringSupport implements Ser
 
 		authorService.updateAuthor(author);
 
-		return "index";
+		return "index?faces-redirect=true";
 	}
 
-	public String showUpdateAuthor(Author author) {
+	public void showUpdateAuthor(Author author) {
 
 		log.info("showUpdateAuthor: {}", author);
 
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		Map<String, Object> requestMap = externalContext.getRequestMap();
-		requestMap.put("author", author);
-
-		return "edit-author";
+		String url = "edit-author.xhtml?id=" + author.getId();
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+		} catch (IOException e) {
+			log.info(e.getMessage());
+		}
 	}
 }

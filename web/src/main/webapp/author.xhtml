@@ -9,25 +9,27 @@
 	<title>Author</title>
 </h:head>
 <h:body>
+	<f:metadata>
+		<f:viewAction action="#{authorController.getAuthor(param['id'])}" />
+	</f:metadata>
+
 	<h3>Author</h3>
 
 	<h:form>
 
 		<h:outputLabel>Id: </h:outputLabel>
-		#{showAuthor.id} <br />
+		#{author.id} <br />
 		<h:outputLabel>Name: </h:outputLabel>
-		#{showAuthor.name} <br />
+		#{author.name} <br />
 		<h:outputLabel>Surname: </h:outputLabel>
-		#{showAuthor.surname} <br />
+		#{author.surname} <br />
 
 		<h:outputLabel>Books: </h:outputLabel>
 		<ul>
-			<ui:repeat var="tempBook" value="#{showAuthor.books}">
+			<ui:repeat var="tempBook" value="#{author.books}">
 				<li><h:outputText value="#{tempBook.title}" /></li>
 			</ui:repeat>
 		</ul>
-
-
 	</h:form>
 </h:body>
 </html>

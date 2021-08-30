@@ -7,19 +7,28 @@
 
 <h:head>
 	<title>Book</title>
-	
+
 	<style>
-		.error{color: red}
+	.error {
+		color: red
+	}
 	</style>
 </h:head>
 <h:body>
-	<h3>Book</h3>
+	<f:metadata>
+		<f:viewAction action="#{bookController.getBook(param['id'])}" />
+		<f:viewParam id="id" name="id" value="#{book.id}"/>
+	</f:metadata>
 
+	<h3>Book</h3>
 	<h:form>
 
-		<h:messages styleClass="error"/>
+		<h:messages styleClass="error" />
 
-		<h:inputHidden value="#{book.id}"/>
+		<h:outputLabel>Id: </h:outputLabel>
+		#{book.id}
+		<br />
+		<h:inputHidden value="#{book.id}" />
 
 		<h:outputLabel>Title: </h:outputLabel>
 		<h:inputText value="#{book.title}" label="Title" required="true"
@@ -27,11 +36,9 @@
 		<br />
 
 		<h:outputLabel>Author: </h:outputLabel>
-		<h:selectOneMenu value="#{book.author}" converter="#{authorConverter}"
+		<h:selectOneMenu value="#{book.author}" converter="#{authorConverter}" 
 			label="Author" required="true" requiredMessage="Author is required">
-			<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-			<f:selectItems value="#{authorService.authors}" var="listedAuthor"
-				itemLabel="#{listedAuthor.name}" itemValue="#{book.author}" />
+			<f:selectItems itemLabel="#{listedAuthor.name}" value="#{authorService.authors}" var="listedAuthor" />
 		</h:selectOneMenu>
 
 		<h:commandButton action="#{bookController.updateBook(book)}"

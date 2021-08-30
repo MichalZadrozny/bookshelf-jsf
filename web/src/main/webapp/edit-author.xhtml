@@ -9,6 +9,11 @@
 	<title>Author</title>
 </h:head>
 <h:body>
+	<f:metadata>
+		<f:viewAction action="#{authorController.getAuthor(param['id'])}" />
+		<f:viewParam id="id" name="id" value="#{author.id}"/>
+	</f:metadata>
+
 	<h3>Author</h3>
 
 	<h:form>

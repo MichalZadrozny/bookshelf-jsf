@@ -1,7 +1,7 @@
 package pl.michalzadrozny.core.entity;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class Book {
 
 	@Id
