@@ -7,22 +7,29 @@
 
 <h:head>
 	<title>Book</title>
+	
+	<style>
+		.error{color: red}
+	</style>
 </h:head>
 <h:body>
 	<h3>Book</h3>
 
 	<h:form>
 
-		<h:outputLabel>Id: </h:outputLabel>
-		#{book.id}
+		<h:messages styleClass="error"/>
+
 		<h:inputHidden value="#{book.id}"/>
-		<br />
 
 		<h:outputLabel>Title: </h:outputLabel>
-		<h:inputText value="#{book.title}" />
+		<h:inputText value="#{book.title}" label="Title" required="true"
+			requiredMessage="Title is required" />
 		<br />
 
-		<h:selectOneMenu value="#{book.author}" converter="#{authorConverter}">
+		<h:outputLabel>Author: </h:outputLabel>
+		<h:selectOneMenu value="#{book.author}" converter="#{authorConverter}"
+			label="Author" required="true" requiredMessage="Author is required">
+			<f:selectItem itemLabel="Select..." noSelectionOption="true" />
 			<f:selectItems value="#{authorService.authors}" var="listedAuthor"
 				itemLabel="#{listedAuthor.name}" itemValue="#{book.author}" />
 		</h:selectOneMenu>
