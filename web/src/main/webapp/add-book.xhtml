@@ -12,7 +12,7 @@
 
 	<h:form>
 
-		<h:outputLabel>Title: </h:outputLabel> 
+		<h:outputLabel>Title: </h:outputLabel>
 		<h:inputText value="#{book.title}" />
 		<h:outputLabel>Author: </h:outputLabel>
 
@@ -22,7 +22,7 @@
 				itemLabel="#{listedAuthor.name}" itemValue="#{book.author}" />
 		</h:selectOneMenu>
 
-		<h:commandButton action="#{bookService.addBook(book)}" value="Save" />
+		<h:commandButton action="#{bookController.addBook(book)}" value="Save" />
 
 	</h:form>
 </h:body>

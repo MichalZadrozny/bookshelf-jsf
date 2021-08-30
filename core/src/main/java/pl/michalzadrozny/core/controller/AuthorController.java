@@ -37,6 +37,15 @@ public class AuthorController extends SpringBeanAutowiringSupport implements Ser
 		return "author";
 	}
 
+	public String addAuthor(Author author) {
+
+		log.info("addAuthor: {}", author);
+
+		authorService.addAuthor(author);
+
+		return "index";
+	}
+
 	public String deleteAuthor(Author author) {
 
 		log.info("deleteAuthor: {}", author);

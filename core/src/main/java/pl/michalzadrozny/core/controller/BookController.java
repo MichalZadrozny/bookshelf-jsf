@@ -37,6 +37,15 @@ public class BookController extends SpringBeanAutowiringSupport implements Seria
 		return "book";
 	}
 
+	public String addBook(Book book) {
+
+		log.info("addBook: {}", book);
+
+		bookService.addBook(book);
+
+		return "index";
+	}
+
 	public String deleteBook(Book book) {
 		log.info("deleteBook: {}", book);
 
