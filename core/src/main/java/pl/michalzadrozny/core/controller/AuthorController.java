@@ -7,24 +7,23 @@ import java.util.Map;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import pl.michalzadrozny.core.entity.Author;
 import pl.michalzadrozny.core.service.AuthorService;
 
 @Named
 @RequestScoped
-public class AuthorController extends SpringBeanAutowiringSupport implements Serializable {
+public class AuthorController implements Serializable {
 
 	private static final long serialVersionUID = 994585156676448103L;
 	private static final Logger log = LoggerFactory.getLogger(AuthorController.class);
 
-	@Autowired
+	@Inject
 	private AuthorService authorService;
 
 	public void showAuthor(Author author) {

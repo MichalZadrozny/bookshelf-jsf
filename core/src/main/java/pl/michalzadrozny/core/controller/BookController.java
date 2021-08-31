@@ -7,24 +7,23 @@ import java.util.Map;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import pl.michalzadrozny.core.entity.Book;
 import pl.michalzadrozny.core.service.BookService;
 
 @Named
 @RequestScoped
-public class BookController extends SpringBeanAutowiringSupport implements Serializable {
+public class BookController implements Serializable {
 
 	private static final long serialVersionUID = -2108176301178285795L;
 	private static final Logger log = LoggerFactory.getLogger(BookController.class);
 
-	@Autowired
+	@Inject
 	private BookService bookService;
 
 	public void showBook(Book book) {
