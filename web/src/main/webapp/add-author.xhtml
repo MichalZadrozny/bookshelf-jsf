@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
 	<title>Add author</title>
 </h:head>
 <h:body>
+	<f:metadata>
+		<f:event type="postAddToView" listener="#{authorBean.init()}" />
+	</f:metadata>
+
 	<h3>Add author</h3>
 
 	<h:form>
 
 		<h:outputLabel>Name: </h:outputLabel>
-		<h:inputText value="#{author.name}" />
+		<h:inputText value="#{authorBean.author.name}" />
 		<h:outputLabel>Surname: </h:outputLabel>
-		<h:inputText value="#{author.surname}" />
+		<h:inputText value="#{authorBean.author.surname}" />
 
-		<h:commandButton action="#{authorController.addAuthor(author)}"
+		<h:commandButton
+			action="#{authorController.addAuthor(authorBean.author)}"
 			value="Save" />
 
 	</h:form>

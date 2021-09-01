@@ -33,6 +33,8 @@ public class BookBean extends SpringBeanAutowiringSupport implements Serializabl
 		String idParam = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
 		if (idParam != null) {
 			book = bookService.getSingleBook(Long.parseLong(idParam));
+		} else {
+			book = new Book();
 		}
 	}
 }

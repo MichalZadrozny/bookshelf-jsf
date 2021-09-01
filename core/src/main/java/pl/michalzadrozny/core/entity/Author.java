@@ -2,8 +2,6 @@ package pl.michalzadrozny.core.entity;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,12 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Entity
-@ManagedBean
-@ViewScoped
 public class Author {
 
 	@Id
@@ -28,8 +21,6 @@ public class Author {
 
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Book> books;
-
-	private static final Logger log = LoggerFactory.getLogger(Author.class);
 
 	public Long getId() {
 		return id;
@@ -44,8 +35,6 @@ public class Author {
 	}
 
 	public void setName(String name) {
-		log.info("Inside setName");
-
 		this.name = name;
 	}
 
@@ -54,8 +43,6 @@ public class Author {
 	}
 
 	public void setSurname(String surname) {
-		log.info("Inside setSurname");
-
 		this.surname = surname;
 	}
 
@@ -64,7 +51,6 @@ public class Author {
 	}
 
 	public void setBooks(List<Book> books) {
-		log.info("Inside setBooks");
 		this.books = books;
 	}
 
@@ -113,5 +99,4 @@ public class Author {
 			return false;
 		return true;
 	}
-
 }

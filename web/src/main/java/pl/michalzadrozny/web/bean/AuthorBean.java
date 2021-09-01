@@ -33,6 +33,8 @@ public class AuthorBean extends SpringBeanAutowiringSupport implements Serializa
 		String idParam = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
 		if (idParam != null) {
 			author = authorService.getSingleAuthor(Long.parseLong(idParam));
+		} else {
+			author = new Author();
 		}
 	}
 }

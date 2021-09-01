@@ -1,7 +1,5 @@
 package pl.michalzadrozny.core.entity;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-@ManagedBean
-@ViewScoped
 public class Book {
 
 	@Id
