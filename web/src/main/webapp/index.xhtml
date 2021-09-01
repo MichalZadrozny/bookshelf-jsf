@@ -12,7 +12,7 @@
 <h:body>
 
 	<h3>Bookshelf</h3>
-	
+
 	<br />
 	<div class="wrapper">
 		<div>
@@ -24,17 +24,15 @@
 				rowClasses="tableOddRow,tableEvenRow">
 				<h:column>
 					<f:facet name="header">Book</f:facet>
-
-					<h:form>
-						<h:commandLink value="#{tempBook.title}"
-							action="#{bookController.showBook(tempBook)}" />
-					</h:form>
+					<h:link value="#{tempBook.title}" outcome="book">
+						<f:param name="id" value="#{tempBook.id}" />
+					</h:link>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Edit</f:facet>
-					<h:form>
-						<h:commandLink action="#{bookController.showUpdateBook(tempBook)}">Edit</h:commandLink>
-					</h:form>
+					<h:link value="Edit" outcome="edit-book">
+						<f:param name="id" value="#{tempBook.id}" />
+					</h:link>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Delete</f:facet>
@@ -54,17 +52,16 @@
 				rowClasses="tableOddRow,tableEvenRow">
 				<h:column>
 					<f:facet name="header">Author</f:facet>
-					<h:form>
-						<h:commandLink value="#{tempAuthor.name} #{tempAuthor.surname}"
-							action="#{authorController.showAuthor(tempAuthor)}" />
-					</h:form>
+					<h:link value="#{tempAuthor.name} #{tempAuthor.surname}" 
+						outcome="author">
+						<f:param name="id" value="#{tempAuthor.id}" />
+					</h:link>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Edit</f:facet>
-					<h:form>
-						<h:commandLink
-							action="#{authorController.showUpdateAuthor(tempAuthor)}">Edit</h:commandLink>
-					</h:form>
+					<h:link value="Edit" outcome="edit-author">
+						<f:param name="id" value="#{tempAuthor.id}" />
+					</h:link>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Delete</f:facet>

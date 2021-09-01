@@ -10,8 +10,7 @@
 </h:head>
 <h:body>
 	<f:metadata>
-		<f:viewAction action="#{authorController.getAuthor(param['id'])}" />
-		<f:viewParam id="id" name="id" value="#{author.id}"/>
+		<f:event type="postAddToView" listener="#{authorBean.init()}" />
 	</f:metadata>
 
 	<h3>Author</h3>
@@ -19,19 +18,19 @@
 	<h:form>
 
 		<h:outputLabel>Id: </h:outputLabel>
-		#{author.id}
-		<h:inputHidden value="#{author.id}"/>
+		#{authorBean.author.id}
+		<h:inputHidden value="#{authorBean.author.id}" />
 		<br />
 
 		<h:outputLabel>Name: </h:outputLabel>
-		<h:inputText value="#{author.name}" />
+		<h:inputText value="#{authorBean.author.name}" />
 		<br />
 
 		<h:outputLabel>Surname: </h:outputLabel>
-		<h:inputText value="#{author.surname}" />
+		<h:inputText value="#{authorBean.author.surname}" />
 		<br />
 
-		<h:commandButton action="#{authorController.updateAuthor(author)}"
+		<h:commandButton action="#{authorController.updateAuthor(authorBean.author)}"
 			value="Save" />
 
 	</h:form>

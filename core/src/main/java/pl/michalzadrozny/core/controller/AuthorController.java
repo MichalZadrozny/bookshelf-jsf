@@ -1,12 +1,8 @@
 package pl.michalzadrozny.core.controller;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -25,28 +21,6 @@ public class AuthorController implements Serializable {
 
 	@Inject
 	private AuthorService authorService;
-
-	public void showAuthor(Author author) {
-
-		log.info("showAuthor: {}", author);
-
-		String url = "author.xhtml?id=" + author.getId();
-		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
-		} catch (IOException e) {
-			log.info(e.getMessage());
-		}
-	}
-
-	public void getAuthor(Long id) {
-
-		log.info("getAuthor: {}", id);
-
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-
-		Map<String, Object> requestMap = externalContext.getRequestMap();
-		requestMap.put("author", authorService.getSingleAuthor(id));
-	}
 
 	public String addAuthor(Author author) {
 
@@ -73,17 +47,5 @@ public class AuthorController implements Serializable {
 		authorService.updateAuthor(author);
 
 		return "index?faces-redirect=true";
-	}
-
-	public void showUpdateAuthor(Author author) {
-
-		log.info("showUpdateAuthor: {}", author);
-
-		String url = "edit-author.xhtml?id=" + author.getId();
-		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
-		} catch (IOException e) {
-			log.info(e.getMessage());
-		}
 	}
 }

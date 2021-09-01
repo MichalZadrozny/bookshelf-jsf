@@ -9,18 +9,18 @@
 </h:head>
 <h:body>
 	<f:metadata>
-		<f:viewAction action="#{bookController.getBook(param['id'])}" />
+		<f:event type="postAddToView" listener="#{bookBean.init()}"/>
 	</f:metadata>
 
 	<h3>Book</h3>
 
 	<h:form>
 		<h:outputLabel>Id: </h:outputLabel>
-		#{book.id} <br />
+		#{bookBean.book.id} <br />
 		<h:outputLabel>Title: </h:outputLabel>
-		#{book.title} <br />
+		#{bookBean.book.title} <br />
 		<h:outputLabel>Author: </h:outputLabel>
-		#{book.author.name} #{book.author.surname}
+		#{bookBean.book.author.name} #{bookBean.book.author.surname}
 	</h:form>
 </h:body>
 </html>

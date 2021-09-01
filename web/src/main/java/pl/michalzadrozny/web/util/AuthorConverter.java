@@ -27,8 +27,6 @@ public class AuthorConverter extends SpringBeanAutowiringSupport implements Conv
 			return null;
 		}
 
-		System.out.println("Submited value: " + submittedValue);
-
 		try {
 			return authorService.getSingleAuthor(Long.valueOf(submittedValue));
 		} catch (NumberFormatException e) {
@@ -41,8 +39,6 @@ public class AuthorConverter extends SpringBeanAutowiringSupport implements Conv
 		if (modelValue == null) {
 			return "";
 		}
-
-		System.out.println("Model value: " + modelValue);
 
 		if (modelValue instanceof Author) {
 			return String.valueOf(((Author) modelValue).getId());

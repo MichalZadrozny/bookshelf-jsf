@@ -1,12 +1,8 @@
 package pl.michalzadrozny.core.controller;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -25,29 +21,6 @@ public class BookController implements Serializable {
 
 	@Inject
 	private BookService bookService;
-
-	public void showBook(Book book) {
-
-		log.info("showBook: {}", book);
-
-		String url = "book.xhtml?id=" + book.getId();
-		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
-		} catch (IOException e) {
-			log.info(e.getMessage());
-		}
-
-	}
-
-	public void getBook(Long id) {
-
-		log.info("getBook: {}", id);
-
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-
-		Map<String, Object> requestMap = externalContext.getRequestMap();
-		requestMap.put("book", bookService.getSingleBook(id));
-	}
 
 	public String addBook(Book book) {
 
@@ -74,17 +47,5 @@ public class BookController implements Serializable {
 		bookService.updateBook(book);
 
 		return "index?faces-redirect=true";
-	}
-
-	public void showUpdateBook(Book book) {
-
-		log.info("showUpdateBook: {}", book);
-
-		String url = "edit-book.xhtml?id=" + book.getId();
-		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
-		} catch (IOException e) {
-			log.info(e.getMessage());
-		}
 	}
 }
