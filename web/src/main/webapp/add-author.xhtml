@@ -6,6 +6,12 @@
 
 <h:head>
 	<title>Add author</title>
+
+	<style>
+	.error {
+		color: red
+	}
+	</style>
 </h:head>
 <h:body>
 	<f:metadata>
@@ -16,10 +22,14 @@
 
 	<h:form>
 
+		<h:messages styleClass="error" />
+
 		<h:outputLabel>Name: </h:outputLabel>
-		<h:inputText value="#{authorBean.author.name}" />
+		<h:inputText value="#{authorBean.author.name}" label="Name"
+			required="true" requiredMessage="Name is required" />
 		<h:outputLabel>Surname: </h:outputLabel>
-		<h:inputText value="#{authorBean.author.surname}" />
+		<h:inputText value="#{authorBean.author.surname}" label="Surname"
+			required="true" requiredMessage="Surname is required" />
 
 		<h:commandButton
 			action="#{authorController.addAuthor(authorBean.author)}"
