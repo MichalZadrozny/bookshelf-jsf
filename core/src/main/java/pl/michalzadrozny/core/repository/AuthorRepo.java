@@ -11,6 +11,6 @@ import pl.michalzadrozny.core.entity.Author;
 @Repository
 public interface AuthorRepo extends JpaRepository<Author, Long> {
 
-	@Query(value = "SELECT a FROM Author a JOIN FETCH a.books b WHERE a.id = ?1")
+	@Query(value = "SELECT a FROM Author a LEFT JOIN FETCH a.books b WHERE a.id = ?1")
 	Optional<Author> findById(Long id);
 }
