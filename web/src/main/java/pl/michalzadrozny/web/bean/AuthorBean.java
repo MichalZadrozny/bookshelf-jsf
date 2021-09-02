@@ -16,10 +16,13 @@ public class AuthorBean extends BaseBean {
 	private static final long serialVersionUID = -3287379115901769109L;
 	private static final Logger log = LoggerFactory.getLogger(AuthorBean.class);
 
-	@Autowired
+	private Author author;
 	private AuthorService authorService;
 
-	private Author author;
+	@Autowired
+	public AuthorBean(AuthorService authorService) {
+		this.authorService = authorService;
+	}
 
 	public void init() {
 		String idParam = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");

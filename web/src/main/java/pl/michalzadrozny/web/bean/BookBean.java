@@ -16,10 +16,13 @@ public class BookBean extends BaseBean {
 	private static final long serialVersionUID = 6060428793198404158L;
 	private static final Logger log = LoggerFactory.getLogger(BookBean.class);
 
-	@Autowired
+	private Book book;
 	private BookService bookService;
 
-	private Book book;
+	@Autowired
+	public BookBean(BookService bookService) {
+		this.bookService = bookService;
+	}
 
 	public void init() {
 		String idParam = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
