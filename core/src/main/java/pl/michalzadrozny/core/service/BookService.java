@@ -1,30 +1,28 @@
 package pl.michalzadrozny.core.service;
 
-import java.io.Serializable;
 import java.util.List;
-
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import pl.michalzadrozny.core.entity.Book;
 import pl.michalzadrozny.core.exception.NotFoundException;
 import pl.michalzadrozny.core.repository.BookRepo;
 
-@Named
-@RequestScoped
-public class BookService extends SpringBeanAutowiringSupport implements Serializable {
+@Service
+public class BookService {
 
-	private static final long serialVersionUID = -1443938721621119046L;
 	private static final Logger log = LoggerFactory.getLogger(BookService.class);
 
-	@Autowired
 	private BookRepo bookRepo;
+
+	@Autowired
+	public BookService(BookRepo bookRepo) {
+		this.bookRepo = bookRepo;
+	}
 
 	@Transactional(readOnly = true)
 	public List<Book> getBooks() {

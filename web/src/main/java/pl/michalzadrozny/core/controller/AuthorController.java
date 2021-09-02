@@ -31,15 +31,6 @@ public class AuthorController implements Serializable {
 		return "index?faces-redirect=true";
 	}
 
-	public String deleteAuthor(Author author) {
-
-		log.info("deleteAuthor: {}", author);
-
-		authorService.deleteAuthor(author);
-
-		return "index?faces-redirect=true";
-	}
-
 	public String updateAuthor(Author author) {
 
 		log.info("updateAuthor: {}", author);

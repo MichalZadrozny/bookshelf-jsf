@@ -1,30 +1,28 @@
 package pl.michalzadrozny.core.service;
 
-import java.io.Serializable;
 import java.util.List;
-
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import pl.michalzadrozny.core.entity.Author;
 import pl.michalzadrozny.core.exception.NotFoundException;
 import pl.michalzadrozny.core.repository.AuthorRepo;
 
-@Named
-@RequestScoped
-public class AuthorService extends SpringBeanAutowiringSupport implements Serializable {
+@Service
+public class AuthorService {
 
-	private static final long serialVersionUID = -5829561476832144071L;
 	private static final Logger log = LoggerFactory.getLogger(AuthorService.class);
 
-	@Autowired
 	private AuthorRepo authorRepo;
+
+	@Autowired
+	public AuthorService(AuthorRepo authorRepo) {
+		this.authorRepo = authorRepo;
+	}
 
 	@Transactional(readOnly = true)
 	public List<Author> getAuthors() {

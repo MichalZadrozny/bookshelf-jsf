@@ -31,15 +31,6 @@ public class BookController implements Serializable {
 		return "index?faces-redirect=true";
 	}
 
-	public String deleteBook(Book book) {
-
-		log.info("deleteBook: {}", book);
-
-		bookService.deleteBook(book);
-
-		return "index?faces-redirect=true";
-	}
-
 	public String updateBook(Book book) {
 
 		log.info("updateBook: {}", book);

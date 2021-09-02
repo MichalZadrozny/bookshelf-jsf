@@ -37,7 +37,7 @@
 				<h:column>
 					<f:facet name="header">Delete</f:facet>
 					<h:form>
-						<h:commandLink action="#{bookController.deleteBook(tempBook)}">Delete</h:commandLink>
+						<h:commandLink action="#{bookService.deleteBook(tempBook)}">Delete</h:commandLink>
 					</h:form>
 				</h:column>
 			</h:dataTable>
@@ -67,7 +67,7 @@
 					<f:facet name="header">Delete</f:facet>
 					<h:form>
 						<h:commandLink
-							action="#{authorController.deleteAuthor(tempAuthor)}">Delete</h:commandLink>
+							action="#{authorService.deleteAuthor(tempAuthor)}">Delete</h:commandLink>
 					</h:form>
 				</h:column>
 			</h:dataTable>
