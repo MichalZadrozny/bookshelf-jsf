@@ -1,33 +1,25 @@
 package pl.michalzadrozny.web.bean;
 
-import java.io.Serializable;
-
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+import org.springframework.stereotype.Component;
 
 import pl.michalzadrozny.core.entity.Author;
 import pl.michalzadrozny.core.service.AuthorService;
 
-@Named
-public class AuthorBean extends SpringBeanAutowiringSupport implements Serializable {
+@Component
+public class AuthorBean extends BaseBean {
 
 	private static final long serialVersionUID = -3287379115901769109L;
+	private static final Logger log = LoggerFactory.getLogger(AuthorBean.class);
 
 	@Autowired
 	private AuthorService authorService;
 
 	private Author author;
-
-	public Author getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
 
 	public void init() {
 		String idParam = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
@@ -36,5 +28,31 @@ public class AuthorBean extends SpringBeanAutowiringSupport implements Serializa
 		} else {
 			author = new Author();
 		}
+	}
+
+	public String addAuthor(Author author) {
+
+		log.info("addAuthor: {}", author);
+
+		authorService.addAuthor(author);
+
+		return redirect("index");
+	}
+
+	public String updateAuthor(Author author) {
+
+		log.info("updateAuthor: {}", author);
+
+		authorService.updateAuthor(author);
+
+		return redirect("index");
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
 	}
 }

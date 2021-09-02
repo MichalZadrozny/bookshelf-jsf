@@ -37,7 +37,7 @@
 				itemLabel="#{listedAuthor.name}" itemValue="#{bookBean.book.author}" />
 		</h:selectOneMenu>
 
-		<h:commandButton action="#{bookController.addBook(bookBean.book)}"
+		<h:commandButton action="#{bookBean.addBook(bookBean.book)}"
 			value="Save" />
 
 	</h:form>

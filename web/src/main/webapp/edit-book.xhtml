@@ -40,7 +40,7 @@
 			<f:selectItems itemLabel="#{listedAuthor.name}" value="#{authorService.authors}" var="listedAuthor" />
 		</h:selectOneMenu>
 
-		<h:commandButton action="#{bookController.updateBook(bookBean.book)}"
+		<h:commandButton action="#{bookBean.updateBook(bookBean.book)}"
 			value="Save" />
 
 	</h:form>
