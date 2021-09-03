@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -23,15 +24,34 @@ public class PersistenceJPAConfig {
 
 	private static final Logger log = LoggerFactory.getLogger(PersistenceJPAConfig.class);
 
+	@Value("${spring.datasource.host}")
+	private String host;
+
+	@Value("${spring.datasource.port}")
+	private String port;
+
+	@Value("${spring.datasource.db.name}")
+	private String databaseName;
+
+	@Value("${spring.datasource.username}")
+	private String username;
+
+	@Value("${spring.datasource.password}")
+	private String password;
+
+	private String getJdbcUrl() {
+		return "jdbc:postgresql://" + host + ":" + port + "/" + databaseName;
+	}
+
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		log.info("Inside entityManagerFactory()");
+		log.info("Creating entityManagerFactory");
 
-		final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
 		em.setPackagesToScan("pl.michalzadrozny");
 
-		final JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);
 		em.setJpaProperties(additionalProperties());
 
@@ -40,20 +60,20 @@ public class PersistenceJPAConfig {
 
 	@Bean
 	public DataSource dataSource() {
-		log.info("Inside dataSource()");
+		log.info("Creating dataSource");
 
-		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl("jdbc:postgresql://" + "localhost" + ":" + "5432" + "/" + "bookshelf-jsf");
-		dataSource.setUsername("postgres");
-		dataSource.setPassword("postgres");
+		dataSource.setUrl(getJdbcUrl());
+		dataSource.setUsername(username);
+		dataSource.setPassword(password);
 
 		return dataSource;
 	}
 
 	@Bean
 	public PlatformTransactionManager transactionManager() {
-		final JpaTransactionManager transactionManager = new JpaTransactionManager();
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 		return transactionManager;
 	}
@@ -63,8 +83,8 @@ public class PersistenceJPAConfig {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
-	final Properties additionalProperties() {
-		final Properties hibernateProperties = new Properties();
+	private static Properties additionalProperties() {
+		Properties hibernateProperties = new Properties();
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 
 		return hibernateProperties;
