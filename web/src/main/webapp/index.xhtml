@@ -13,15 +13,15 @@
 <h:body>
 
 	<h1>Bookshelf</h1>
-
 	<br />
-	<div class="wrapper">
+
+	<h:form class="wrapper">
 		<div class="table-box">
 			<h2>Books</h2>
 			<p:button outcome="add-book" value="Add book" />
 
 			<p:dataTable var="tempBook" value="#{bookService.books}"
-				styleClass="table">
+				id="books-table" styleClass="table">
 				<p:column>
 					<f:facet name="header">Book</f:facet>
 					<h:link value="#{tempBook.title}" outcome="book">
@@ -30,25 +30,35 @@
 				</p:column>
 				<p:column>
 					<f:facet name="header">Edit</f:facet>
-					<h:link value="Edit" outcome="edit-book">
+					<p:button value="Edit" outcome="edit-book" styleClass="p-mr-2">
 						<f:param name="id" value="#{tempBook.id}" />
-					</h:link>
+					</p:button>
 				</p:column>
 				<p:column>
 					<f:facet name="header">Delete</f:facet>
-					<h:form>
-						<h:commandLink action="#{bookService.deleteBook(tempBook)}">Delete</h:commandLink>
-					</h:form>
+					<p:commandButton value="Delete"
+						action="#{bookService.deleteBook(tempBook)}" update="books-table"
+						styleClass="ui-button-danger">
+						<p:confirm header="Confirmation"
+							message="Do you want to delete this record?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				responsive="true" width="350">
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no ui-button-flat" />
+				<p:commandButton value="Yes" type="button"
+					styleClass="ui-confirmdialog-yes" />
+			</p:confirmDialog>
 		</div>
 
 		<div class="table-box">
 			<h2>Authors</h2>
 			<p:button outcome="add-author" value="Add author" />
-
 			<p:dataTable var="tempAuthor" value="#{authorService.authors}"
-				styleClass="table">
+				id="authors-table" styleClass="table">
 				<p:column>
 					<f:facet name="header">Author</f:facet>
 					<h:link value="#{tempAuthor.name} #{tempAuthor.surname}"
@@ -58,20 +68,30 @@
 				</p:column>
 				<p:column>
 					<f:facet name="header">Edit</f:facet>
-					<h:link value="Edit" outcome="edit-author">
+					<p:button value="Edit" outcome="edit-author" styleClass="p-mr-2">
 						<f:param name="id" value="#{tempAuthor.id}" />
-					</h:link>
+					</p:button>
 				</p:column>
 				<p:column>
 					<f:facet name="header">Delete</f:facet>
-					<h:form>
-						<h:commandLink action="#{authorService.deleteAuthor(tempAuthor)}">Delete</h:commandLink>
-					</h:form>
+					<p:commandButton value="Delete"
+						action="#{authorService.deleteAuthor(tempAuthor)}"
+						update="authors-table @form:books-table"
+						styleClass="ui-button-danger">
+						<p:confirm header="Confirmation"
+							message="Do you want to delete this record?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
-
 		</div>
-	</div>
-
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+			responsive="true" width="350">
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no ui-button-flat" />
+			<p:commandButton value="Yes" type="button"
+				styleClass="ui-confirmdialog-yes" />
+		</p:confirmDialog>
+	</h:form>
 </h:body>
 </html>
