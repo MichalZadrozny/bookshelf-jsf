@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
 	<title>Add author</title>
-
-	<style>
-	.error {
-		color: red
-	}
-	</style>
+	<h:outputStylesheet name="add-book-styles.css" library="css" />
 </h:head>
 <h:body>
 	<f:metadata>
 		<f:event type="postAddToView" listener="#{authorBean.init()}" />
 	</f:metadata>
 
-	<h3>Add author</h3>
+	<div class="wrapper">
+		<h1>Add author</h1>
 
-	<h:form>
+		<h:form class="form">
 
-		<h:messages styleClass="error" />
+			<p:messages id="msgs" />
 
-		<h:outputLabel>Name: </h:outputLabel>
-		<h:inputText value="#{authorBean.author.name}" label="Name"
-			required="true" requiredMessage="Name is required" />
-		<h:outputLabel>Surname: </h:outputLabel>
-		<h:inputText value="#{authorBean.author.surname}" label="Surname"
-			required="true" requiredMessage="Surname is required" />
+			<p:outputLabel>Name: </p:outputLabel>
+			<p:inputText value="#{authorBean.author.name}" label="Name"
+				required="true" requiredMessage="Name is required" />
+			<br />
+			<p:outputLabel>Surname: </p:outputLabel>
+			<p:inputText value="#{authorBean.author.surname}" label="Surname"
+				required="true" requiredMessage="Surname is required" />
+			<br />
 
-		<h:commandButton
-			action="#{authorBean.addAuthor(authorBean.author)}"
-			value="Save" />
+			<p:commandButton action="#{authorBean.addAuthor(authorBean.author)}" class="button"
+				value="Save" />
 
-	</h:form>
+		</h:form>
+	</div>
+
 </h:body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core">
@@ -11,66 +12,63 @@
 </h:head>
 <h:body>
 
-	<h3>Bookshelf</h3>
+	<h1>Bookshelf</h1>
 
 	<br />
 	<div class="wrapper">
-		<div>
-			<h4>Books</h4>
-			<h:button outcome="add-book" value="Add book" />
+		<div class="table-box">
+			<h2>Books</h2>
+			<p:button outcome="add-book" value="Add book" />
 
-			<h:dataTable var="tempBook" value="#{bookService.books}"
-				styleClass="table" headerClass="tableHeader"
-				rowClasses="tableOddRow,tableEvenRow">
-				<h:column>
+			<p:dataTable var="tempBook" value="#{bookService.books}"
+				styleClass="table">
+				<p:column>
 					<f:facet name="header">Book</f:facet>
 					<h:link value="#{tempBook.title}" outcome="book">
 						<f:param name="id" value="#{tempBook.id}" />
 					</h:link>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Edit</f:facet>
 					<h:link value="Edit" outcome="edit-book">
 						<f:param name="id" value="#{tempBook.id}" />
 					</h:link>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Delete</f:facet>
 					<h:form>
 						<h:commandLink action="#{bookService.deleteBook(tempBook)}">Delete</h:commandLink>
 					</h:form>
-				</h:column>
-			</h:dataTable>
+				</p:column>
+			</p:dataTable>
 		</div>
 
-		<div>
-			<h4>Authors</h4>
-			<h:button outcome="add-author" value="Add author" />
+		<div class="table-box">
+			<h2>Authors</h2>
+			<p:button outcome="add-author" value="Add author" />
 
-			<h:dataTable var="tempAuthor" value="#{authorService.authors}"
-				styleClass="table" headerClass="tableHeader"
-				rowClasses="tableOddRow,tableEvenRow">
-				<h:column>
+			<p:dataTable var="tempAuthor" value="#{authorService.authors}"
+				styleClass="table">
+				<p:column>
 					<f:facet name="header">Author</f:facet>
-					<h:link value="#{tempAuthor.name} #{tempAuthor.surname}" 
+					<h:link value="#{tempAuthor.name} #{tempAuthor.surname}"
 						outcome="author">
 						<f:param name="id" value="#{tempAuthor.id}" />
 					</h:link>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Edit</f:facet>
 					<h:link value="Edit" outcome="edit-author">
 						<f:param name="id" value="#{tempAuthor.id}" />
 					</h:link>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Delete</f:facet>
 					<h:form>
-						<h:commandLink
-							action="#{authorService.deleteAuthor(tempAuthor)}">Delete</h:commandLink>
+						<h:commandLink action="#{authorService.deleteAuthor(tempAuthor)}">Delete</h:commandLink>
 					</h:form>
-				</h:column>
-			</h:dataTable>
+				</p:column>
+			</p:dataTable>
 
 		</div>
 	</div>

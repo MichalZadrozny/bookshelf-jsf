@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
 	<title>Add book</title>
-
-	<style>
-	.error {
-		color: red
-	}
-	</style>
+	<h:outputStylesheet name="add-book-styles.css" library="css" />
 </h:head>
 <h:body>
 	<f:metadata>
 		<f:event type="postAddToView" listener="#{bookBean.init()}" />
 	</f:metadata>
 
-	<h3>Add book</h3>
+	<div class="wrapper">
+		<h1>Add book</h1>
 
-	<h:form>
+		<h:form class="form">
 
-		<h:messages styleClass="error" />
+			<p:messages id="msgs" />
 
-		<h:outputLabel>Title: </h:outputLabel>
-		<h:inputText value="#{bookBean.book.title}" label="Title"
-			required="true" requiredMessage="Title is required" />
-		<h:outputLabel>Author: </h:outputLabel>
+			<p:outputLabel>Title: </p:outputLabel>
+			<p:inputText value="#{bookBean.book.title}" label="Title"
+				required="true" requiredMessage="Title is required" />
+			<br />
 
+			<p:outputLabel>Author: </p:outputLabel>
+			<p:selectOneMenu value="#{bookBean.book.author}"
+				converter="#{authorConverter}" label="Author" required="true"
+				requiredMessage="Author is required">
+				<f:selectItems value="#{authorService.authors}" var="listedAuthor"
+					itemLabel="#{listedAuthor.name}"
+					itemValue="#{bookBean.book.author}" />
+			</p:selectOneMenu>
+			<br />
 
-		<h:selectOneMenu value="#{bookBean.book.author}"
-			converter="#{authorConverter}" label="Author" required="true"
-			requiredMessage="Author is required">
-			<f:selectItems value="#{authorService.authors}" var="listedAuthor"
-				itemLabel="#{listedAuthor.name}" itemValue="#{bookBean.book.author}" />
-		</h:selectOneMenu>
+			<p:commandButton action="#{bookBean.addBook(bookBean.book)}" class="button"
+				value="Save" />
 
-		<h:commandButton action="#{bookBean.addBook(bookBean.book)}"
-			value="Save" />
-
-	</h:form>
+		</h:form>
+	</div>
 </h:body>
 </html>

@@ -1,28 +1,40 @@
 @charset "UTF-8";
 
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+h1, h2 {
+	text-align: center;
+}
+
 .wrapper {
 	justify-content: space-around;
 	display: flex;
+	padding: 3rem;
+}
+
+td, th {
+	text-align: center !important;
+}
+
+.table-box {
+	padding: 2rem;
 }
 
 .table {
 	border-collapse: collapse;
-	border: 1px solid #000000;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-bottom: none;
+	margin: 1rem 0;
 }
 
-.tableHeader {
-	text-align: center;
-	background: none repeat scroll 0 0 #B5B5B5;
-	border-bottom: 1px solid #000000;
-	padding: 2px;
+th {
+	background: #2596be !important;
+	color: #ffffff !important;
 }
 
-.tableOddRow {
-	text-align: center;
-	background: none repeat scroll 0 0 #FFFFFF;
-}
-
-.tableEvenRow {
-	text-align: center;
-	background: none repeat scroll 0 0 #D3D3D3;
+.ui-datatable-odd {
+	background-color: #f9f9f9 !important;
 }
