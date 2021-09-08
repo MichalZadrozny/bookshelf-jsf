@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:head>
-	<title>Add book</title>
-	<h:outputStylesheet name="add-book-styles.css" library="css" />
-</h:head>
-<h:body>
 	<f:metadata>
 		<f:event type="postAddToView" listener="#{bookBean.init()}" />
 	</f:metadata>
+		<h:outputStylesheet name="add-view-styles.css" library="css" />
 
-	<div class="wrapper">
-		<h1>Add book</h1>
-
+	<div class="modal-wrapper">
 		<h:form class="form">
-
-			<p:messages id="msgs" />
+			<p:messages id="book-msgs" />
 
 			<p:outputLabel>Title: </p:outputLabel>
 			<p:inputText value="#{bookBean.book.title}" label="Title"
@@ -36,10 +29,8 @@
 			</p:selectOneMenu>
 			<br />
 
-			<p:commandButton action="#{bookBean.addBook(bookBean.book)}" class="button"
-				value="Save" />
-
+			<p:commandButton action="#{bookBean.addBook(bookBean.book)}"
+				update="book-msgs" class="button" value="Save" />
 		</h:form>
 	</div>
-</h:body>
-</html>
+</ui:composition>

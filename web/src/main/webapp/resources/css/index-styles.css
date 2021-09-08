@@ -5,14 +5,16 @@ body {
 	flex-direction: column;
 }
 
+.wrapper{
+	display: flex;
+}
+
 h1, h2 {
 	text-align: center;
 }
 
-.wrapper {
-	justify-content: space-around;
-	display: flex;
-	padding: 3rem;
+.form {
+	padding: 0 3rem;
 }
 
 td, th {
@@ -41,4 +43,12 @@ th {
 
 .table .ui-button{
 	width: 5rem;
+}
+
+body .ui-messages .ui-messages-error{
+	padding: 1rem !important;
+}
+
+.add-button{
+	margin-left: 2rem !important;
 }
