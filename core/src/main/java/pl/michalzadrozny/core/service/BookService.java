@@ -72,7 +72,7 @@ public class BookService {
 	public List<Book> getBooksPagination(int first, int pageSize) {
 		log.info("Request to getBooksPagination");
 
-		return bookRepo.findAll(PageRequest.of((first / pageSize), pageSize)).getContent();
+		return bookRepo.findAll(PageRequest.of(first, pageSize)).getContent();
 	}
 
 	@Transactional(readOnly = true)

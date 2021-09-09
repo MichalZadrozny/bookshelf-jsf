@@ -71,7 +71,7 @@ public class AuthorService {
 	public List<Author> getAuthorsPagination(int first, int pageSize) {
 		log.info("Request to getAuthorsPagination");
 
-		return authorRepo.findAll(PageRequest.of((first / pageSize), pageSize)).getContent();
+		return authorRepo.findAll(PageRequest.of(first, pageSize)).getContent();
 	}
 
 	@Transactional(readOnly = true)
