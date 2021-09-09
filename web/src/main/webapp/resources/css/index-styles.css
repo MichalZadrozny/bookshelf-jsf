@@ -5,7 +5,7 @@ body {
 	flex-direction: column;
 }
 
-.wrapper{
+.wrapper {
 	display: flex;
 }
 
@@ -23,6 +23,7 @@ td, th {
 
 .table-box {
 	padding: 2rem;
+	padding-top: 0;
 }
 
 .table {
@@ -41,14 +42,19 @@ th {
 	background-color: #f9f9f9 !important;
 }
 
-.table .ui-button{
+.table .ui-button {
 	width: 5rem;
 }
 
-body .ui-messages .ui-messages-error{
+body .ui-messages .ui-messages-error {
 	padding: 1rem !important;
 }
 
-.add-button{
+.add-button {
 	margin-left: 2rem !important;
+}
+
+.ui-paginator {
+	font-weight: bold;
+	padding: 0.3rem !important;
 }

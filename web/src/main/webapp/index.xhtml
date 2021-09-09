@@ -17,7 +17,7 @@
 	<div class="wrapper">
 		<div class="table-box">
 			<h2>Books</h2>
-
+						
 			<p:commandButton value="Add book" type="button"
 				onclick="PF('add-book-modal').show()" class="add-button" />
 
@@ -31,8 +31,8 @@
 			</p:dialog>
 
 			<h:form class="form">
-				<p:dataTable var="tempBook" value="#{bookService.books}"
-					id="books-table" styleClass="table">
+				<p:dataTable var="tempBook" value="#{bookBean.dataModel}" lazy="true"
+					paginator="true" rows="7" id="books-table" styleClass="table">
 					<p:column>
 						<f:facet name="header">Book</f:facet>
 						<h:link value="#{tempBook.title}" outcome="book">
@@ -64,9 +64,9 @@
 			<p:commandButton value="Add author" type="button"
 				onclick="PF('add-author-modal').show()" class="add-button" />
 
-			<p:dialog header="Add author" widgetVar="add-author-modal" minHeight="40"
-				width="350" modal="true" showEffect="fade" dynamic="true"
-				id="add-author-dialog">
+			<p:dialog header="Add author" widgetVar="add-author-modal"
+				minHeight="40" width="350" modal="true" showEffect="fade"
+				dynamic="true" id="add-author-dialog">
 				<ui:insert name="adding">
 					<ui:include src="add-author.xhtml" />
 				</ui:insert>
@@ -74,8 +74,8 @@
 			</p:dialog>
 
 			<h:form class="form">
-				<p:dataTable var="tempAuthor" value="#{authorService.authors}"
-					id="authors-table" styleClass="table">
+				<p:dataTable var="tempAuthor" value="#{authorBean.dataModel}" lazy="true"				
+					paginator="true" rows="7" id="authors-table" styleClass="table">
 					<p:column>
 						<f:facet name="header">Author</f:facet>
 						<h:link value="#{tempAuthor.name} #{tempAuthor.surname}"

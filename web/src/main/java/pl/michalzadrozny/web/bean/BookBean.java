@@ -1,7 +1,9 @@
 package pl.michalzadrozny.web.bean;
 
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.model.LazyDataModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,16 @@ public class BookBean extends BaseBean {
 
 	private Book book;
 	private BookService bookService;
+	private LazyDataModel<Book> dataModel;
 
 	@Autowired
 	public BookBean(BookService bookService) {
 		this.bookService = bookService;
+	}
+
+	@PostConstruct
+	public void postConstruct() {
+		this.dataModel = new LazyBookDataModel(bookService);
 	}
 
 	public void init() {
@@ -57,5 +65,9 @@ public class BookBean extends BaseBean {
 
 	public void setBook(Book book) {
 		this.book = book;
+	}
+
+	public LazyDataModel<Book> getDataModel() {
+		return dataModel;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,5 +65,19 @@ public class AuthorService {
 		authorRepo.save(authorToUpdate);
 
 		return authorToUpdate;
+	}
+
+	@Transactional(readOnly = true)
+	public List<Author> getAuthorsPagination(int first, int pageSize) {
+		log.info("Request to getAuthorsPagination");
+
+		return authorRepo.findAll(PageRequest.of((first / pageSize), pageSize)).getContent();
+	}
+
+	@Transactional(readOnly = true)
+	public long countAuthors() {
+		log.info("Request to countAuthors");
+
+		return authorRepo.count();
 	}
 }

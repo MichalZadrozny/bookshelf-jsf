@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,5 +66,19 @@ public class BookService {
 		bookRepo.save(bookToUpdate);
 
 		return newBook;
+	}
+
+	@Transactional(readOnly = true)
+	public List<Book> getBooksPagination(int first, int pageSize) {
+		log.info("Request to getBooksPagination");
+
+		return bookRepo.findAll(PageRequest.of((first / pageSize), pageSize)).getContent();
+	}
+
+	@Transactional(readOnly = true)
+	public long countBooks() {
+		log.info("Request to countBooks");
+
+		return bookRepo.count();
 	}
 }

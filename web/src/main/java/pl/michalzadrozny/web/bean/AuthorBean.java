@@ -1,7 +1,9 @@
 package pl.michalzadrozny.web.bean;
 
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.model.LazyDataModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,16 @@ public class AuthorBean extends BaseBean {
 
 	private Author author;
 	private AuthorService authorService;
+	private LazyDataModel<Author> dataModel;
 
 	@Autowired
 	public AuthorBean(AuthorService authorService) {
 		this.authorService = authorService;
+	}
+
+	@PostConstruct
+	public void postConstruct() {
+		this.dataModel = new LazyAuthorDataModel(authorService);
 	}
 
 	public void init() {
@@ -57,5 +65,9 @@ public class AuthorBean extends BaseBean {
 
 	public void setAuthor(Author author) {
 		this.author = author;
+	}
+
+	public LazyDataModel<Author> getDataModel() {
+		return dataModel;
 	}
 }
