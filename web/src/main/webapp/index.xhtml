@@ -33,7 +33,7 @@
 			<h:form class="form">
 				<p:dataTable var="tempBook" value="#{bookBean.dataModel}" lazy="true"
 					paginator="true" rows="7" id="books-table" styleClass="table">
-					<p:column>
+					<p:column headerText="Title" sortBy="title">
 						<f:facet name="header">Book</f:facet>
 						<h:link value="#{tempBook.title}" outcome="book">
 							<f:param name="id" value="#{tempBook.id}" />
@@ -76,7 +76,7 @@
 			<h:form class="form">
 				<p:dataTable var="tempAuthor" value="#{authorBean.dataModel}" lazy="true"				
 					paginator="true" rows="7" id="authors-table" styleClass="table">
-					<p:column>
+					<p:column headerText="Author" sortBy="name">
 						<f:facet name="header">Author</f:facet>
 						<h:link value="#{tempAuthor.name} #{tempAuthor.surname}"
 							outcome="author">

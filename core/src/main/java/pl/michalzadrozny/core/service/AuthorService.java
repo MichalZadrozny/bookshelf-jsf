@@ -2,10 +2,12 @@ package pl.michalzadrozny.core.service;
 
 import java.util.List;
 
+import org.primefaces.model.SortMeta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,8 +70,16 @@ public class AuthorService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Author> getAuthorsPagination(int first, int pageSize) {
+	public List<Author> getAuthorsPagination(int first, int pageSize, SortMeta sortMeta) {
 		log.info("Request to getAuthorsPagination");
+
+		if (sortMeta != null) {
+			int sort = sortMeta.getOrder().isAscending() ? 0 : 1;
+
+			return authorRepo.findAll(
+					PageRequest.of(first, pageSize, Sort.by(Sort.Direction.values()[sort], sortMeta.getField())))
+					.getContent();
+		}
 
 		return authorRepo.findAll(PageRequest.of(first, pageSize)).getContent();
 	}
